@@ -73,7 +73,8 @@ const Navbar = () => {
           elevation={0}
           sx={{
             bgcolor: 'rgba(255, 255, 255, 0.8)', // Her zaman açık renk arka plan
-            backdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(4px)',
+            opacity: 1,
           }}
         >
           <Container maxWidth="lg">

@@ -4,6 +4,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import BrushIcon from '@mui/icons-material/Brush';
 import DevicesIcon from '@mui/icons-material/Devices';
 import profileImage from '../assets/profile.jpg';
+import { motion } from 'framer-motion';
 
 const About = () => {
   const skills = [
@@ -24,6 +25,17 @@ const About = () => {
     }
   ];
 
+  function About() {
+    return (
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Mevcut içerik */}
+      </motion.section>
+    );
+  }
   return (
     <Box
       id="about"

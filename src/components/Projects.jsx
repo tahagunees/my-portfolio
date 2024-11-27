@@ -2,16 +2,17 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, CardActions, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
-
+import carwash from '../assets/carwash.jpg';
 const Projects = () => {
   const projects = [
     {
-      title: 'Proje 1',
-      description: 'React ve Material UI kullanılarak geliştirilmiş web uygulaması',
-      image: 'https://via.placeholder.com/300x200',
-      github: 'https://github.com',
+      title: 'Car Wash Automation',
+      description: 'Oto Yıkama Dükkanları için geliştirdiğim bir otomasyon uygulaması.Python Qt arayüz kütüphanesi kullanılarak geliştirildi.',
+      image: carwash,
+      github: 'https://github.com/tahagunees/CarWashAutomation',
       demo: 'https://demo.com'
     },
+    
     // Daha fazla proje ekleyebilirsiniz
   ];
 

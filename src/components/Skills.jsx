@@ -6,7 +6,7 @@ import {
   FaCss3Alt, 
   FaJs, 
   FaGitAlt, 
-  FaGithub,
+  FaFigma,
   FaNpm,
   FaJava
 } from 'react-icons/fa';
@@ -37,7 +37,7 @@ const Skills = () => {
     { name: 'Docker', icon: <SiDocker size={40} />, color: '#47A248' },
     { name: 'PostgreSQL', icon: <SiPostgresql size={40} />, color: '#4169E1' },
     { name: 'Git', icon: <FaGitAlt size={40} />, color: '#F05032' },
-    { name: 'GitHub', icon: <FaGithub size={40} />, color: '#181717' },
+    { name: 'Figma', icon: <FaFigma size={40} />, color: '#181717' },
     { name: 'NPM', icon: <FaNpm size={40} />, color: '#CB3837' },
   ];
 

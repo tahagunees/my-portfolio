@@ -67,7 +67,7 @@ const About = () => {
               }}
             >
               Merhaba ben Taha ,
-                Yazılım Mühedisliği Öğrencisiyim. Modern web teknolojileri konusunda sürekli kendimi geliştirmeye devam ediyorum.
+                 Modern web teknolojileri konusunda sürekli kendimi geliştirmeye devam ediyorum.
             </Typography>
             <Typography
               variant="body1"
@@ -77,7 +77,7 @@ const About = () => {
                 fontFamily: 'Poppins, sans-serif'
               }}
             >
-              React, Material UI, TypeScript gibi modern teknolojilerle çalışmaktan keyif alıyorum. Kullanıcı deneyimini ön planda tutarak, performanslı ve ölçeklenebilir uygulamalar geliştiriyorum.
+               Modern önyüz kütüphaneleri ve yeni çıkan teknolojilerle çalışmaktan keyif alıyorum. Kullanıcı deneyimini ön planda tutarak, performanslı ve ölçeklenebilir uygulamalar geliştiriyorum.
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>

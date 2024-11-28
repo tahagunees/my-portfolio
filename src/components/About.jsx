@@ -25,157 +25,153 @@ const About = () => {
     }
   ];
 
-  function About() {
-    return (
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {/* Mevcut içerik */}
-      </motion.section>
-    );
-  }
   return (
-    <Box
-      id="about"
-      sx={{
-        py: 8,
-        bgcolor: 'background.default'
-      }}
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          sx={{
-            textAlign: 'center',
-            mb: 6,
-            fontWeight: 700,
-            fontFamily: 'Montserrat, sans-serif'
-          }}
-        >
-          Hakkımda
-        </Typography>
+      <Box
+        id="about"
+        sx={{
+          py: 8,
+          bgcolor: 'background.default'
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            sx={{
+              textAlign: 'center',
+              mb: 6,
+              fontWeight: 700,
+              fontFamily: 'Montserrat, sans-serif'
+            }}
+          >
+            Hakkımda
+          </Typography>
 
-        <Grid container spacing={4} sx={{ mb: 8 }}>
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h5"
-              sx={{
-                mb: 2,
-                fontWeight: 600,
-                fontFamily: 'Montserrat, sans-serif'
-              }}
-            >
-              Ben Kimim?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-                mb: 2,
-                lineHeight: 1.8,
-                fontFamily: 'Poppins, sans-serif'
-              }}
-            >
-              Merhaba ben Taha ,
-                 Modern web teknolojileri konusunda sürekli kendimi geliştirmeye devam ediyorum.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-                lineHeight: 1.8,
-                fontFamily: 'Poppins, sans-serif'
-              }}
-            >
-               Modern önyüz kütüphaneleri ve yeni çıkan teknolojilerle çalışmaktan keyif alıyorum. Kullanıcı deneyimini ön planda tutarak, performanslı ve ölçeklenebilir uygulamalar geliştiriyorum.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                position: 'relative',
-                width: '100%',
-                height: '400px', // Yüksekliği ayarlayabilirsiniz
-                borderRadius: '20px',
-                overflow: 'hidden',
-                boxShadow: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? '0 8px 32px rgba(255, 255, 255, 0.1)'
-                    : '0 8px 32px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.02)',
-                },
-              }}
-            >
-              <Box
-                component="img"
-                src={profileImage}
-                alt="Taha Güneş"
+          <Grid container spacing={4} sx={{ mb: 8 }}>
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h5"
                 sx={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover', // Fotoğrafın boyutunu korur
-                  objectPosition: 'center', // Fotoğrafın merkezini gösterir
+                  mb: 2,
+                  fontWeight: 600,
+                  fontFamily: 'Montserrat, sans-serif'
                 }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={4}>
-          {skills.map((skill, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Paper
-                elevation={0}
+              >
+                Ben Kimim?
+              </Typography>
+              <Typography
+                variant="body1"
                 sx={{
-                  p: 3,
-                  textAlign: 'center',
-                  height: '100%',
-                  borderRadius: 2,
-                  bgcolor: 'background.paper',
-                  transition: 'transform 0.3s, box-shadow 0.3s',
-                  border: (theme) =>
+                  color: 'text.secondary',
+                  mb: 2,
+                  lineHeight: 1.8,
+                  fontFamily: 'Poppins, sans-serif'
+                }}
+              >
+                Merhaba ben Taha,
+                Modern web teknolojileri konusunda sürekli kendimi geliştirmeye devam ediyorum.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: 'text.secondary',
+                  lineHeight: 1.8,
+                  fontFamily: 'Poppins, sans-serif'
+                }}
+              >
+                Modern önyüz kütüphaneleri ve yeni çıkan teknolojilerle çalışmaktan keyif alıyorum. 
+                Kullanıcı deneyimini ön planda tutarak, performanslı ve ölçeklenebilir uygulamalar geliştiriyorum.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '400px',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? '1px solid rgba(255, 255, 255, 0.12)'
-                      : 'none',
+                      ? '0 8px 32px rgba(255, 255, 255, 0.1)'
+                      : '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'translateY(-10px)',
-                    boxShadow: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? '0 10px 20px rgba(0,0,0,0.5)'
-                        : theme.shadows[10],
+                    transform: 'scale(1.02)',
                   },
                 }}
               >
-                {skill.icon}
-                <Typography
-                  variant="h6"
+                <Box
+                  component="img"
+                  src={profileImage}
+                  alt="Taha Güneş"
                   sx={{
-                    my: 2,
-                    fontWeight: 600,
-                    fontFamily: 'Montserrat, sans-serif'
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
                   }}
-                >
-                  {skill.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    fontFamily: 'Poppins, sans-serif'
-                  }}
-                >
-                  {skill.description}
-                </Typography>
-              </Paper>
+                />
+              </Box>
             </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
+          </Grid>
+
+          <Grid container spacing={4}>
+            {skills.map((skill, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    height: '100%',
+                    borderRadius: 2,
+                    bgcolor: 'background.paper',
+                    transition: 'transform 0.3s, box-shadow 0.3s',
+                    border: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? '1px solid rgba(255, 255, 255, 0.12)'
+                        : 'none',
+                    '&:hover': {
+                      transform: 'translateY(-10px)',
+                      boxShadow: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? '0 10px 20px rgba(0,0,0,0.5)'
+                          : theme.shadows[10],
+                    },
+                  }}
+                >
+                  {skill.icon}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      my: 2,
+                      fontWeight: 600,
+                      fontFamily: 'Montserrat, sans-serif'
+                    }}
+                  >
+                    {skill.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                      fontFamily: 'Poppins, sans-serif'
+                    }}
+                  >
+                    {skill.description}
+                  </Typography>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+    </motion.section>
   );
 };
 

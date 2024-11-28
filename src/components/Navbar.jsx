@@ -104,7 +104,7 @@ const Navbar = () => {
                     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                   </IconButton>
                   <IconButton
-                    sx={{ color: '#000000' }}  // Her zaman siyah
+                    sx={{ color: '#000000',ml:2 }}  // Her zaman siyah
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
@@ -119,10 +119,11 @@ const Navbar = () => {
                       key={item.text}
                       href={item.href}
                       sx={{
+                        fontFamily: 'Poppins, sans-serif',
                         color: '#000000',  // Her zaman siyah
                         '&:hover': {
                           color: 'primary.main',
-                          fontFamily:'Pacifico,cursive'
+                          
                         },
                       }}
                     >

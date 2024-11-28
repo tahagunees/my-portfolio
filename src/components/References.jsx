@@ -44,7 +44,9 @@ const References = () => {
               <Card sx={{ minWidth: 300, maxWidth: 350 }}>
                 <CardContent>
                   <FormatQuoteIcon sx={{ fontSize: 40, color: 'primary.main' }} />
-                  <Typography variant="body1" sx={{ my: 2 }}>
+                  <Typography variant="body1" sx={{ 
+                    my: 2, 
+                    fontFamily: 'Poppins, sans-serif' }}>
                     {reference.comment}
                   </Typography>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

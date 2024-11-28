@@ -32,7 +32,8 @@ const Footer = () => {
         mt: 'auto',
         backgroundColor: 'background.paper',
         borderTop: '1px solid',
-        borderColor: 'divider'
+        borderColor: 'divider',
+        fontFamily: 'Poppins, sans-serif',
       }}
     >
       <Container maxWidth="lg">
@@ -65,7 +66,7 @@ const Footer = () => {
           </Grid>
           
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 , fontFamily: 'Poppins, sans-serif'}}>
               Hızlı Bağlantılar
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -89,7 +90,7 @@ const Footer = () => {
           </Grid>
 
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 , fontFamily: 'Poppins, sans-serif'}}>
               İletişim
             </Typography>
             <Typography variant="body2" color="text.secondary" paragraph>
@@ -102,7 +103,7 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid', borderColor: 'divider' }}>
+        <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid', borderColor: 'divider' , fontFamily: 'Poppins, sans-serif'}}>
           <Typography variant="body2" color="text.secondary" align="center">
             © {currentYear} TAHA GÜNEŞ. Tüm hakları saklıdır.
           </Typography>

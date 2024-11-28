@@ -1,24 +1,13 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Paper } from '@mui/material';
+import { Box, Container, Typography, Paper } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import GitHubStats from './GitHubStats';
 import { 
-  FaReact, 
-  FaHtml5, 
-  FaCss3Alt, 
-  FaJs, 
-  FaGitAlt, 
-  FaFigma,
-  FaNpm,
-  FaJava
+  FaReact, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaFigma, FaNpm, FaJava 
 } from 'react-icons/fa';
 import { 
-  SiTypescript, 
-  SiMui, 
-  SiTailwindcss, 
-  SiUbuntu,
-  SiNextdotjs,
-  SiDocker,
-  SiSpring,
-  SiPostgresql
+  SiTypescript, SiMui, SiTailwindcss, SiUbuntu, SiNextdotjs, 
+  SiDocker, SiSpring, SiPostgresql 
 } from 'react-icons/si';
 
 const Skills = () => {
@@ -42,13 +31,7 @@ const Skills = () => {
   ];
 
   return (
-    <Box
-      id="skills"
-      sx={{
-        py: 8,
-        bgcolor: 'background.default'
-      }}
-    >
+    <Box id="skills" sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container maxWidth="lg">
         <Typography
           variant="h3"
@@ -56,7 +39,8 @@ const Skills = () => {
             textAlign: 'center',
             mb: 6,
             fontWeight: 700,
-            fontFamily: 'Pacifico,cursive'
+            fontFamily: 'Pacifico, cursive',
+            
           }}
         >
           Kullandığım Teknolojiler
@@ -113,6 +97,10 @@ const Skills = () => {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ mt: 8 ,}}>
+          <GitHubStats />
+        </Box>
       </Container>
     </Box>
   );

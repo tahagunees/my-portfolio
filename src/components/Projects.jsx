@@ -57,7 +57,8 @@ const Projects = () => {
                   <Typography
                     variant="h6"
                     sx={{
-                      color: 'text.primary', // Otomatik olarak tema rengini kullanır
+                      color: 'text.primary',
+                      fontFamily: 'Poppins, sans-serif', // Otomatik olarak tema rengini kullanır
                       mb: 2,
                     }}
                   >
@@ -66,7 +67,8 @@ const Projects = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: 'text.secondary', // Otomatik olarak tema rengini kullanır
+                      color: 'text.secondary', //otomatik olarak tema rengini kullanır
+                      fontFamily: 'Poppins, sans-serif', 
                     }}
                   >
                     {project.description}

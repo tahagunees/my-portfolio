@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import Certificates from './components/Certificates';
 import Experience from './components/Experience';
 import References from './components/References';
-import GitHubStats from './components/GitHubStats';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 

@@ -56,7 +56,7 @@ const Skills = () => {
             textAlign: 'center',
             mb: 6,
             fontWeight: 700,
-            fontFamily: 'Montserrat, sans-serif'
+            fontFamily: 'Pacifico,cursive'
           }}
         >
           Kullandığım Teknolojiler

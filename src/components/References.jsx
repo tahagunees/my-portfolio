@@ -18,7 +18,7 @@ const References = () => {
   return (
     <Box id="testimonials" sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container maxWidth="lg">
-        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6 }}>
+        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6, fontFamily:'Pacifico,cursive' }}>
           Referanslar
         </Typography>
 

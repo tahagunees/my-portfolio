@@ -83,12 +83,14 @@ const Navbar = () => {
                 variant="h6" 
                 component="div" 
                 sx={{ 
+                  fontFamily: 'Pacifico, cursive',
                   flexGrow: 1,
                   fontWeight: 700,
+                  fontSize: '2rem',
                   color: '#000000'  // Her zaman siyah
                 }}
               >
-                TAHA GÜNEŞ
+                Taha Güneş
               </Typography>
               
               {isMobile ? (
@@ -120,6 +122,7 @@ const Navbar = () => {
                         color: '#000000',  // Her zaman siyah
                         '&:hover': {
                           color: 'primary.main',
+                          fontFamily:'Pacifico,cursive'
                         },
                       }}
                     >

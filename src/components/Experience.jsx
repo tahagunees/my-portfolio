@@ -31,7 +31,9 @@ const Experience = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Typography variant="h3" sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography variant="h3" sx={{ textAlign: 'center', mb: 6 ,
+            fontFamily:'Pacifico,cursive'
+          }}>
             Deneyim
           </Typography>
           

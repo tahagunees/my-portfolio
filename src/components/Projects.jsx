@@ -19,7 +19,7 @@ const Projects = () => {
   return (
     <Box id="projects" sx={{ py: 8 }}>
       <Container maxWidth="lg">
-        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6, fontWeight: 700 }}>
+        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6, fontWeight: 700 ,fontFamily:'Pacifico,cursive'}}>
           Projelerim
         </Typography>
         <Grid container spacing={4}>

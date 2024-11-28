@@ -45,7 +45,8 @@ const About = () => {
               textAlign: 'center',
               mb: 6,
               fontWeight: 700,
-              fontFamily: 'Montserrat, sans-serif'
+              fontSize: '3.2rem',
+              fontFamily: 'Pacifico, cursive'
             }}
           >
             Hakkımda

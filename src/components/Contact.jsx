@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <Box id="contact" sx={{ py: 8, bgcolor: 'background.paper' }}>
       <Container maxWidth="md">
-        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6, fontWeight: 700 }}>
+        <Typography variant="h3" sx={{ textAlign: 'center', mb: 6,fontFamily:'Pacifico,cursive' ,fontWeight: 700 }}>
           İletişime Geç
         </Typography>
         <Box component="form" noValidate sx={{ mt: 3 }}>

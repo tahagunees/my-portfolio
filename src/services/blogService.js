@@ -25,6 +25,11 @@ export const blogService = {
     }
   },
 
+  // Alias for getPost
+  getPostBySlug: async (slug) => {
+    return blogService.getPost(slug);
+  },
+
   createPost: async (postData) => {
     try {
       const response = await axios.post(`${API_URL}/posts`, postData);

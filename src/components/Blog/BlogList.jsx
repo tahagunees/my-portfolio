@@ -1,3 +1,4 @@
+// BlogList.jsx
 import React, { useState, useEffect } from 'react';
 import {
   Container,
@@ -6,143 +7,129 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  CircularProgress,
   Box,
-  Chip,
-  useTheme,
-  Paper,
+  useTheme
 } from '@mui/material';
-import { blogService } from '../../services/blogService';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { blogService } from '../../services/blogService';
 
 const BlogList = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const theme = useTheme();
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchBlogs = async () => {
       try {
+        setIsLoading(true);
         const data = await blogService.getAllPosts();
-        setPosts(data);
-        setLoading(false);
+        setBlogs(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error('Blog yazıları yüklenirken hata:', error);
-        setLoading(false);
+        console.error('Blog yüklenirken hata:', error);
+        setBlogs([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchPosts();
+    fetchBlogs();
   }, []);
 
-  if (loading) {
-    return <Typography>Yükleniyor...</Typography>;
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '60vh'
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        bgcolor: 'background.default',
-        pt: 10,
-        pb: 4,
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
     >
-      <Container maxWidth="lg">
-        <Paper
-          elevation={0}
-          sx={{
-            p: 4,
-            mb: 4,
-            bgcolor: theme.palette.mode === 'dark'
-              ? 'rgba(255, 255, 255, 0.05)'
-              : 'rgba(255, 255, 255, 0.8)',
-            backdropFilter: 'blur(8px)',
-            borderRadius: 2,
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? 'rgba(255, 255, 255, 0.1)'
-                : 'rgba(0, 0, 0, 0.1)'
-            }`,
-          }}
+      <Container sx={{ py: 8 }}>
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+          sx={{ mb: 6 }}
         >
-          <Typography
-            variant="h3"
-            component="h1"
-            gutterBottom
-            sx={{ color: 'text.primary', mb: 4 }}
-          >
-            Blog Yazıları
-          </Typography>
-
-          <Grid container spacing={4}>
-            {posts.map((post) => (
-              <Grid item xs={12} sm={6} md={4} key={post.id}>
+          Blog Yazıları
+        </Typography>
+        <Grid container spacing={4}>
+          {blogs.map((blog, index) => (
+            <Grid item xs={12} sm={6} md={4} key={blog.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <Card
                   component={Link}
-                  to={`/blog/${post.slug}`}
+                  to={`/blog/${blog.slug}`}
                   sx={{
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     textDecoration: 'none',
-                    bgcolor: theme.palette.mode === 'dark'
-                      ? 'rgba(255, 255, 255, 0.05)'
-                      : 'rgba(255, 255, 255, 0.8)',
+                    bgcolor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.8)',
                     backdropFilter: 'blur(8px)',
-                    transition: 'transform 0.2s ease-in-out',
+                    transition: 'all 0.3s ease-in-out',
                     '&:hover': {
                       transform: 'translateY(-4px)',
+                      boxShadow: theme.palette.mode === 'dark' 
+                        ? '0 8px 16px rgba(0,0,0,0.4)'
+                        : '0 8px 16px rgba(0,0,0,0.1)',
                     },
-                    border: `1px solid ${
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(255, 255, 255, 0.1)'
-                        : 'rgba(0, 0, 0, 0.1)'
-                    }`,
+                    border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={post.imageUrl || 'https://source.unsplash.com/random'}
-                    alt={post.title}
-                  />
+                  {blog.imageUrl && (
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        height: 200,
+                        objectFit: 'cover',
+                      }}
+                      image={blog.imageUrl}
+                      alt={blog.title}
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/400x200?text=Blog+Resmi';
+                      }}
+                    />
+                  )}
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="h2"
-                      sx={{ color: 'text.primary' }}
-                    >
-                      {post.title}
+                    <Typography variant="h5" component="h2" color="text.primary" gutterBottom>
+                      {blog.title}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ mb: 2 }}
-                    >
-                      {new Date(post.createdAt).toLocaleDateString('tr-TR')}
+                    <Typography color="text.secondary" sx={{ mb: 2 }}>
+                      {new Date(blog.createdAt).toLocaleDateString('tr-TR')}
                     </Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                      {post.tags.map((tag) => (
-                        <Chip
-                          key={tag}
-                          label={tag}
-                          size="small"
-                          sx={{
-                            bgcolor: theme.palette.primary.main,
-                            color: '#fff',
-                          }}
-                        />
-                      ))}
-                    </Box>
+                    <Typography variant="body2" color="text.secondary">
+                      {blog.description}
+                    </Typography>
                   </CardContent>
                 </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Paper>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
-    </Box>
+    </motion.div>
   );
 };
 

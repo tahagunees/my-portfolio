@@ -10,6 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { motion } from 'framer-motion';
 import { blogService } from '../../services/blogService';
 
 const BlogPost = () => {
@@ -24,60 +25,59 @@ const BlogPost = () => {
       try {
         const data = await blogService.getPostBySlug(slug);
         setPost(data);
-        setLoading(false);
       } catch (error) {
         console.error('Blog yazısı yüklenirken hata:', error);
+        navigate('/blog');
+      } finally {
         setLoading(false);
       }
     };
 
     fetchPost();
-  }, [slug]);
+  }, [slug, navigate]);
 
   if (loading) {
-    return <Typography>Yükleniyor...</Typography>;
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '60vh',
+        }}
+      >
+        <Typography>Yükleniyor...</Typography>
+      </Box>
+    );
   }
 
   if (!post) {
     return (
       <Box
         sx={{
-          minHeight: '100vh',
-          bgcolor: 'background.default',
-          pt: 10,
-          pb: 4,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '60vh',
         }}
       >
-        <Container maxWidth="lg">
-          <Typography variant="h4" sx={{ color: 'text.primary' }}>
-            Blog yazısı bulunamadı
-          </Typography>
-          <Button
-            startIcon={<ArrowBackIcon />}
-            onClick={() => navigate('/blog')}
-            sx={{ mt: 2 }}
-          >
-            Blog Listesine Dön
-          </Button>
-        </Container>
+        <Typography>Blog yazısı bulunamadı.</Typography>
       </Box>
     );
   }
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        bgcolor: 'background.default',
-        pt: 10,
-        pb: 4,
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Button
-          startIcon={<ArrowBackIcon />}
           onClick={() => navigate('/blog')}
-          sx={{ mb: 4, color: 'text.primary' }}
+          startIcon={<ArrowBackIcon />}
+          sx={{ mb: 4 }}
         >
           Blog Listesine Dön
         </Button>
@@ -98,6 +98,14 @@ const BlogPost = () => {
             }`,
           }}
         >
+          <Typography variant="h3" component="h1" gutterBottom>
+            {post.title}
+          </Typography>
+
+          <Typography color="text.secondary" sx={{ mb: 3 }}>
+            {new Date(post.createdAt).toLocaleDateString('tr-TR')}
+          </Typography>
+
           {post.imageUrl && (
             <Box
               component="img"
@@ -105,58 +113,51 @@ const BlogPost = () => {
               alt={post.title}
               sx={{
                 width: '100%',
-                height: 400,
+                maxHeight: '500px',
                 objectFit: 'cover',
                 borderRadius: 1,
                 mb: 4,
               }}
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/1200x500?text=Blog+Resmi';
+              }}
             />
           )}
 
-          <Typography
-            variant="h3"
-            component="h1"
-            gutterBottom
-            sx={{ color: 'text.primary' }}
-          >
-            {post.title}
-          </Typography>
-
-          <Box sx={{ mb: 4 }}>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              sx={{ mb: 2 }}
-            >
-              {new Date(post.createdAt).toLocaleDateString('tr-TR')}
-            </Typography>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          {post.tags && post.tags.length > 0 && (
+            <Box sx={{ mb: 4 }}>
               {post.tags.map((tag) => (
                 <Chip
                   key={tag}
                   label={tag}
                   sx={{
+                    mr: 1,
+                    mb: 1,
                     bgcolor: theme.palette.primary.main,
                     color: '#fff',
                   }}
                 />
               ))}
             </Box>
-          </Box>
+          )}
 
           <Typography
             variant="body1"
+            component="div"
             sx={{
-              color: 'text.primary',
-              lineHeight: 1.8,
               '& p': { mb: 2 },
+              '& img': {
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: 1,
+                my: 2
+              }
             }}
-          >
-            {post.content}
-          </Typography>
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </Paper>
       </Container>
-    </Box>
+    </motion.div>
   );
 };
 

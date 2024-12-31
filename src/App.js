@@ -34,12 +34,19 @@ function ScrollToTop() {
 }
 
 function App() {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem('theme');
+    return savedMode || 'dark';
+  });
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => {
+          const newMode = prevMode === 'light' ? 'dark' : 'light';
+          localStorage.setItem('theme', newMode);
+          return newMode;
+        });
       },
     }),
     []

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.NODE_ENV === 'production'
+  ? '/api'  // Production'da relative path kullan
+  : 'http://localhost:5000/api'; // Development'da localhost kullan
 
 export const blogService = {
   getAllPosts: async () => {

@@ -1,49 +1,59 @@
-import React, { useContext, useState } from 'react';
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Button, 
-  IconButton,
-  useTheme,
+import React, { useContext, useState, useEffect } from 'react';
+import {
+  AppBar,
   Box,
-  Container,
-  useScrollTrigger,
-  Slide,
-  useMediaQuery,
+  Toolbar,
+  IconButton,
+  Typography,
   Drawer,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Container,
+  useMediaQuery,
+  useScrollTrigger,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import MenuIcon from '@mui/icons-material/Menu';
 import { ColorModeContext } from '../App';
 
-function HideOnScroll(props) {
-  const { children } = props;
-  const trigger = useScrollTrigger();
+const pages = [
+  { name: 'Ana Sayfa', href: '/' },
+  { name: 'Blog', href: '/blog' },
+];
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
+function ElevationScroll(props) {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const navItems = [
-    { text: 'Hakkımda', href: '#about' },
-    { text: 'Yetenekler', href: '#skills' },
-    { text: 'Projeler', href: '#projects' },
-    { text: 'İletişim', href: '#contact' },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setIsScrolled(offset > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -51,121 +61,139 @@ const Navbar = () => {
 
   const drawer = (
     <List>
-      {navItems.map((item) => (
-        <ListItem 
-          button 
-          key={item.text} 
-          component="a" 
-          href={item.href}
+      {pages.map((page) => (
+        <ListItem
+          key={page.name}
+          component="a"
+          href={page.href}
           onClick={handleDrawerToggle}
+          sx={{
+            textDecoration: 'none',
+            color: 'inherit',
+          }}
         >
-          <ListItemText primary={item.text} />
+          <ListItemText primary={page.name} />
         </ListItem>
       ))}
     </List>
   );
 
   return (
-    <>
-      <HideOnScroll>
-        <AppBar 
-          position="fixed" 
-          elevation={0}
-          sx={{
-            bgcolor: 'rgba(255, 255, 255, 0.8)', // Her zaman açık renk arka plan
-            backdropFilter: 'blur(4px)',
-            opacity: 1,
-          }}
-        >
-          <Container maxWidth="lg">
-            <Toolbar disableGutters>
-              <Typography 
-                variant="h6" 
-                component="div" 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive',
-                  flexGrow: 1,
-                  fontWeight: 700,
-                  fontSize: '2rem',
-                  color: '#000000'  // Her zaman siyah
-                }}
-              >
-                Taha Güneş
-              </Typography>
-              
-              {isMobile ? (
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <IconButton
-                    sx={{ color: '#000000' }}  // Her zaman siyah
-                    aria-label="toggle theme"
-                    onClick={colorMode.toggleColorMode}
-                    edge="end"
-                  >
-                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                  </IconButton>
-                  <IconButton
-                    sx={{ color: '#000000',ml:2 }}  // Her zaman siyah
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                </Box>
-              ) : (
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                  {navItems.map((item) => (
-                    <Button 
-                      key={item.text}
-                      href={item.href}
-                      sx={{
-                        fontFamily: 'Poppins, sans-serif',
-                        color: '#000000',  // Her zaman siyah
-                        '&:hover': {
-                          color: 'primary.main',
-                          
-                        },
-                      }}
-                    >
-                      {item.text}
-                    </Button>
-                  ))}
-                  <IconButton
-                    sx={{ color: '#000000' }}  // Her zaman siyah
-                    aria-label="toggle theme"
-                    onClick={colorMode.toggleColorMode}
-                    edge="end"
-                  >
-                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                  </IconButton>
-                </Box>
-              )}
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </HideOnScroll>
-
-      <Drawer
-        variant="temporary"
-        anchor="right"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+    <ElevationScroll {...props}>
+      <AppBar
+        position="fixed"
         sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { 
-            boxSizing: 'border-box', 
-            width: 240,
-            bgcolor: 'background.paper',
-            color: 'text.primary'  // Tema rengini kullan
-          },
+          backgroundColor: isScrolled
+            ? theme.palette.mode === 'dark'
+              ? 'rgba(18, 18, 18, 0.9)'
+              : 'rgba(255, 255, 255, 0.9)'
+            : 'transparent',
+          backdropFilter: 'blur(8px)',
+          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+          transition: 'all 0.3s ease-in-out',
+          boxShadow: isScrolled ? 1 : 0,
         }}
       >
-        {drawer}
-      </Drawer>
-    </>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Taha Güneş
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="menu"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleDrawerToggle}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
+
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Taha Yasin
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Typography
+                  key={page.name}
+                  component="a"
+                  href={page.href}
+                  sx={{
+                    mx: 2,
+                    color: 'inherit',
+                    display: 'block',
+                    textDecoration: 'none',
+                    '&:hover': {
+                      color: theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  {page.name}
+                </Typography>
+              ))}
+            </Box>
+
+            <IconButton
+              sx={{ ml: 1 }}
+              onClick={colorMode.toggleColorMode}
+              color="inherit"
+            >
+              {theme.palette.mode === 'dark' ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
+          </Toolbar>
+        </Container>
+
+        <Drawer
+          variant="temporary"
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </AppBar>
+    </ElevationScroll>
   );
 };
 

@@ -1,7 +1,10 @@
-import React, { useState, useMemo, createContext } from 'react';
-import { CssBaseline, ThemeProvider, Box, Container } from '@mui/material';
-import { getTheme } from './components/Theme';
-import { motion } from 'framer-motion';
+import React, { useState, createContext, useMemo, useEffect } from 'react';
+import { CssBaseline, ThemeProvider, Box } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { createTheme } from '@mui/material/styles';
+import { AnimatePresence } from 'framer-motion';
+
+// Components
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -11,87 +14,121 @@ import Footer from './components/Footer';
 import Certificates from './components/Certificates';
 import Experience from './components/Experience';
 import References from './components/References';
-import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
+import BlogList from './components/Blog/BlogList';
+import BlogPost from './components/Blog/BlogPost';
+import BlogAdmin from './components/Admin/BlogAdmin';
+import Login from './components/Admin/Login';
 
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
-});
+// Theme context
+export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
-function App() {
+// Scroll to top component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [pathname]);
 
-  const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem('themeMode');
-    return savedMode || 'light';
-  });
+  return null;
+}
+
+function App() {
+  const [mode, setMode] = useState('light');
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => {
-          const newMode = prevMode === 'light' ? 'dark' : 'light';
-          localStorage.setItem('themeMode', newMode);
-          return newMode;
-        });
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     []
   );
 
-  const theme = useMemo(() => getTheme(mode), [mode]);
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          ...(mode === 'light'
+            ? {
+                // Light mode
+                primary: {
+                  main: '#1976d2',
+                },
+                secondary: {
+                  main: '#dc004e',
+                },
+                background: {
+                  default: '#fff',
+                  paper: '#fff',
+                },
+              }
+            : {
+                // Dark mode
+                primary: {
+                  main: '#90caf9',
+                },
+                secondary: {
+                  main: '#f48fb1',
+                },
+                background: {
+                  default: '#121212',
+                  paper: '#1e1e1e',
+                },
+              }),
+        },
+        typography: {
+          fontFamily: '"Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
+        },
+      }),
+    [mode]
+  );
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+        <Router>
+          <ScrollToTop />
+          <Box
+            sx={{
+              bgcolor: 'background.default',
+              color: 'text.primary',
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
           >
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                minHeight: '100vh',
-                bgcolor: 'background.default',
-                color: 'text.primary',
-                transition: 'background-color 0.5s, color 0.5s'
-              }}
-            >
+            <AnimatePresence mode="wait">
               <Navbar />
-              <Container 
-                component={motion.main}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                maxWidth="lg" 
-                sx={{ 
-                  flex: 1, 
-                  mt: { xs: 8, sm: 12 },
-                  mb: { xs: 4, sm: 8 }
-                }}
-              >
-                <About />
-                <Skills />
-                <Experience />
-                <Certificates />
-                <Projects />
-                <References />
-                <Contact />
-              </Container>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <About />
+                      <Skills />
+                      <Experience />
+                      <Projects />
+                      <Certificates />
+                      <References />
+                      <Contact />
+                    </>
+                  }
+                />
+                <Route path="/blog" element={<BlogList />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/admin/login" element={<Login />} />
+                <Route path="/admin/blog" element={<BlogAdmin />} />
+              </Routes>
               <Footer />
-            </Box>
-          </motion.div>
-        </AnimatePresence>
+            </AnimatePresence>
+          </Box>
+        </Router>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
 }
-
 
 export default App;

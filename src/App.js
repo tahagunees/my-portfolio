@@ -101,12 +101,12 @@ function App() {
             }}
           >
             <AnimatePresence mode="wait">
-              <Navbar />
+              <Navbar key="navbar" />
               <Routes>
                 <Route
                   path="/"
                   element={
-                    <>
+                    <Box key="home">
                       <About />
                       <Skills />
                       <Experience />
@@ -114,15 +114,15 @@ function App() {
                       <Certificates />
                       <References />
                       <Contact />
-                    </>
+                    </Box>
                   }
                 />
-                <Route path="/blog" element={<BlogList />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/admin/login" element={<Login />} />
-                <Route path="/admin/blog" element={<BlogAdmin />} />
+                <Route path="/blog" element={<Box key="blog-list"><BlogList /></Box>} />
+                <Route path="/blog/:slug" element={<Box key="blog-post"><BlogPost /></Box>} />
+                <Route path="/admin/login" element={<Box key="admin-login"><Login /></Box>} />
+                <Route path="/admin/blog" element={<Box key="admin-blog"><BlogAdmin /></Box>} />
               </Routes>
-              <Footer />
+              <Footer key="footer" />
             </AnimatePresence>
           </Box>
         </Router>

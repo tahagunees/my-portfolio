@@ -1,6 +1,13 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
+console.log('Veritabanı bağlantı bilgileri:', {
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME || 'portfolio_db',
+  username: process.env.DB_USER || 'postgres',
+});
+
 const sequelize = new Sequelize({
   dialect: 'postgres',
   host: process.env.DB_HOST || 'localhost',
@@ -14,7 +21,7 @@ const sequelize = new Sequelize({
     acquire: 30000,
     idle: 10000
   },
-  logging: console.log
+  logging: true
 });
 
 // Veritabanı bağlantısını test et ve tabloları oluştur
@@ -30,7 +37,8 @@ const initDatabase = async () => {
     await sequelize.sync({ alter: true });
     console.log('Tablolar başarıyla oluşturuldu.');
   } catch (error) {
-    console.error('Veritabanı işlemi sırasında hata:', error);
+    console.error('Veritabanı bağlantı hatası:', error.message);
+    console.error('Hata detayları:', error);
   }
 };
 

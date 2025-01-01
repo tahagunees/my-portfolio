@@ -1,27 +1,29 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
   Typography,
+  Container,
+  useMediaQuery,
+  useScrollTrigger,
+  Button,
   Drawer,
   List,
   ListItem,
   ListItemText,
-  Container,
-  useMediaQuery,
-  useScrollTrigger,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { HashLink } from 'react-router-hash-link';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ColorModeContext } from '../App';
+import { ColorModeContext } from '../theme';
 
-const pages = [
-  { name: 'Ana Sayfa', href: '/' },
-  { name: 'Blog', href: '/blog' },
+const navItems = [
+  { name: 'Ana Sayfa', href: '/#home' },
+  { name: 'Projeler', href: '/#projects' },
+  { name: 'Blog', href: '/#blog' },
 ];
 
 function ElevationScroll(props) {
@@ -36,17 +38,17 @@ function ElevationScroll(props) {
   });
 }
 
-const Navbar = (props) => {
+export default function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const colorMode = useContext(ColorModeContext);
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setIsScrolled(offset > 50);
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(scrollTop > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -61,140 +63,111 @@ const Navbar = (props) => {
 
   const drawer = (
     <List>
-      {pages.map((page) => (
-        <ListItem
-          key={page.name}
-          component="a"
-          href={page.href}
+      {navItems.map((item) => (
+        <ListItem 
+          key={item.name} 
+          component={HashLink} 
+          to={item.href}
+          data-testid={`mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}
           onClick={handleDrawerToggle}
-          sx={{
-            textDecoration: 'none',
-            color: 'inherit',
-          }}
+          style={{ textDecoration: 'none', color: 'inherit' }}
         >
-          <ListItemText primary={page.name} />
+          <ListItemText primary={item.name} />
         </ListItem>
       ))}
     </List>
   );
 
   return (
-    <ElevationScroll {...props}>
-      <AppBar
-        position="fixed"
-        sx={{
-          backgroundColor: isScrolled
-            ? theme.palette.mode === 'dark'
-              ? 'rgba(18, 18, 18, 0.9)'
-              : 'rgba(255, 255, 255, 0.9)'
-            : 'transparent',
-          backdropFilter: 'blur(8px)',
-          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
-          transition: 'all 0.3s ease-in-out',
-          boxShadow: isScrolled ? 1 : 0,
-        }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 700,
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              Taha Güneş
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="menu"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleDrawerToggle}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
-
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontWeight: 700,
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              Taha Yasin
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Typography
-                  key={page.name}
-                  component="a"
-                  href={page.href}
-                  sx={{
-                    mx: 2,
-                    color: 'inherit',
-                    display: 'block',
-                    textDecoration: 'none',
-                    '&:hover': {
-                      color: theme.palette.primary.main,
-                    },
-                  }}
-                >
-                  {page.name}
-                </Typography>
-              ))}
-            </Box>
-
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={colorMode.toggleColorMode}
-              color="inherit"
-            >
-              {theme.palette.mode === 'dark' ? (
-                <Brightness7Icon />
-              ) : (
-                <Brightness4Icon />
-              )}
-            </IconButton>
-          </Toolbar>
-        </Container>
-
-        <Drawer
-          variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+    <Box sx={{ display: 'flex' }}>
+      <ElevationScroll {...props}>
+        <AppBar 
+          position="fixed" 
+          color="default" 
+          sx={{ 
+            backgroundColor: isScrolled ? 'background.paper' : 'transparent',
+            transition: 'background-color 0.3s ease',
           }}
         >
-          {drawer}
-        </Drawer>
-      </AppBar>
-    </ElevationScroll>
-  );
-};
+          <Container maxWidth="lg">
+            <Toolbar disableGutters>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                data-testid="navbar-title"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: matches ? 'none' : 'block', sm: 'block' },
+                  fontFamily: 'Pacifico, cursive',
+                  color: 'text.primary',
+                }}
+              >
+                Taha Güneş
+              </Typography>
 
-export default Navbar;
+              <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
+                {navItems.map((item) => (
+                  <Button
+                    key={item.name}
+                    component={HashLink}
+                    to={item.href}
+                    smooth
+                    data-testid={`nav-${item.name.toLowerCase().replace(' ', '-')}`}
+                    sx={{
+                      color: 'text.primary',
+                      textTransform: 'none',
+                      mx: 1,
+                      '&:hover': {
+                        backgroundColor: 'action.hover',
+                      },
+                    }}
+                  >
+                    {item.name}
+                  </Button>
+                ))}
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Button
+                  data-testid="theme-toggle"
+                  onClick={colorMode.toggleColorMode}
+                  color="inherit"
+                  sx={{ ml: 1 }}
+                >
+                  {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                </Button>
+
+                <Box sx={{ display: { sm: 'none' } }}>
+                  <Button
+                    data-testid="mobile-menu-toggle"
+                    onClick={handleDrawerToggle}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </Button>
+                </Box>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </ElevationScroll>
+
+      <Drawer
+        variant="temporary"
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+        }}
+      >
+        {drawer}
+      </Drawer>
+    </Box>
+  );
+}

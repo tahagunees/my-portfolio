@@ -3,33 +3,98 @@ import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import BrushIcon from '@mui/icons-material/Brush';
 import DevicesIcon from '@mui/icons-material/Devices';
-import profileImage from '../assets/profile.jpg';
 import { motion } from 'framer-motion';
 
 const About = () => {
   const skills = [
     {
       icon: <CodeIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
-      title: 'Web Geliştirme',
-      description: 'Modern web teknolojileri kullanarak responsive ve kullanıcı dostu web siteleri geliştiriyorum.'
+      title: 'Game Development',
+      description: 'Developing mobile and PC games using Unity and Unreal Engine with focus on interactive experiences.'
     },
     {
       icon: <BrushIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
-      title: 'UI/UX Tasarım',
-      description: 'Kullanıcı deneyimini ön planda tutarak modern ve şık arayüzler tasarlıyorum.'
+      title: 'Level Design',
+      description: 'Creating engaging and fun levels that provide immersive gaming experiences for players.'
     },
     {
       icon: <DevicesIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
-      title: 'Responsive Tasarım',
-      description: 'Tüm cihazlarda kusursuz çalışan uyumlu tasarımlar oluşturuyorum.'
+      title: 'Team Collaboration',
+      description: 'Working effectively with multidisciplinary teams to develop successful gaming projects.'
     }
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.8,
+      rotateY: -15 
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -10,
+      scale: 1.02,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
     >
       <Box
         id="about"
@@ -39,134 +104,128 @@ const About = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{
-              textAlign: 'center',
-              mb: 6,
-              fontWeight: 700,
-              fontSize: '3.2rem',
-              fontFamily: 'Pacifico, cursive'
-            }}
-          >
-            Hakkımda
-          </Typography>
+          <motion.div variants={textVariants}>
+            <Typography
+              variant="h3"
+              sx={{
+                textAlign: 'center',
+                mb: 6,
+                fontWeight: 700,
+                fontSize: '3.2rem',
+                fontFamily: 'Pacifico, cursive',
+                background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              About Me
+            </Typography>
+          </motion.div>
 
           <Grid container spacing={4} sx={{ mb: 8 }}>
             <Grid item xs={12} md={6}>
-              <Typography
-                variant="h5"
-                sx={{
-                  mb: 2,
-                  fontWeight: 600,
-                  fontFamily: 'Montserrat, sans-serif'
-                }}
-              >
-                Ben Kimim?
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'text.secondary',
-                  mb: 2,
-                  lineHeight: 1.8,
-                  fontFamily: 'Poppins, sans-serif'
-                }}
-              >
-                Merhaba ben Taha,
-                Modern web teknolojileri konusunda sürekli kendimi geliştirmeye devam ediyorum.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'text.secondary',
-                  lineHeight: 1.8,
-                  fontFamily: 'Poppins, sans-serif'
-                }}
-              >
-                Modern önyüz kütüphaneleri ve yeni çıkan teknolojilerle çalışmaktan keyif alıyorum. 
-                Kullanıcı deneyimini ön planda tutarak, performanslı ve ölçeklenebilir uygulamalar geliştiriyorum.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '400px',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  boxShadow: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? '0 8px 32px rgba(255, 255, 255, 0.1)'
-                      : '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'scale(1.02)',
-                  },
-                }}
-              >
-                <Box
-                  component="img"
-                  src={profileImage}
-                  alt="Taha Güneş"
+              <motion.div variants={textVariants}>
+                <Typography
+                  variant="h5"
                   sx={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
+                    mb: 2,
+                    fontWeight: 600,
+                    fontFamily: 'Montserrat, sans-serif'
                   }}
-                />
-              </Box>
+                >
+                  Who Am I?
+                </Typography>
+              </motion.div>
+              
+              <motion.div variants={textVariants}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: 'text.secondary',
+                    mb: 2,
+                    lineHeight: 1.8,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}
+                >
+                  Hello, I'm Ömer Güneş, a passionate Game Developer with over 4 years of experience in developing 
+                  interactive and engaging mobile games. Currently working as Game Developer at Unico Studio.
+                </Typography>
+              </motion.div>
+              
+              <motion.div variants={textVariants}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: 'text.secondary',
+                    lineHeight: 1.8,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}
+                >
+                  Proficient in Unity and C#, I focus on creating seamless and immersive gaming experiences. 
+                  My goal is to continuously enhance my skills and stay updated with the latest trends in the gaming industry. 
+                  Experienced with various SDKs like Nakama, Azure PlayFab, and Photon Network.
+                </Typography>
+              </motion.div>
             </Grid>
           </Grid>
 
           <Grid container spacing={4}>
             {skills.map((skill, index) => (
               <Grid item xs={12} md={4} key={index}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 3,
-                    textAlign: 'center',
-                    height: '100%',
-                    borderRadius: 2,
-                    bgcolor: 'background.paper',
-                    transition: 'transform 0.3s, box-shadow 0.3s',
-                    border: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? '1px solid rgba(255, 255, 255, 0.12)'
-                        : 'none',
-                    '&:hover': {
-                      transform: 'translateY(-10px)',
-                      boxShadow: (theme) =>
-                        theme.palette.mode === 'dark'
-                          ? '0 10px 20px rgba(0,0,0,0.5)'
-                          : theme.shadows[10],
-                    },
-                  }}
+                <motion.div
+                  variants={cardVariants}
+                  whileHover="hover"
+                  custom={index}
                 >
-                  {skill.icon}
-                  <Typography
-                    variant="h6"
+                  <Paper
+                    elevation={0}
                     sx={{
-                      my: 2,
-                      fontWeight: 600,
-                      fontFamily: 'Montserrat, sans-serif'
+                      p: 3,
+                      textAlign: 'center',
+                      height: '100%',
+                      borderRadius: 2,
+                      bgcolor: 'background.paper',
+                      transition: 'transform 0.3s, box-shadow 0.3s',
+                      border: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? '1px solid rgba(255, 255, 255, 0.12)'
+                          : 'none',
+                      '&:hover': {
+                        boxShadow: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? '0 10px 20px rgba(0,0,0,0.5)'
+                            : theme.shadows[10],
+                      },
                     }}
                   >
-                    {skill.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontFamily: 'Poppins, sans-serif'
-                    }}
-                  >
-                    {skill.description}
-                  </Typography>
-                </Paper>
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {skill.icon}
+                    </motion.div>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        my: 2,
+                        fontWeight: 600,
+                        fontFamily: 'Montserrat, sans-serif'
+                      }}
+                    >
+                      {skill.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: 'text.secondary',
+                        fontFamily: 'Poppins, sans-serif'
+                      }}
+                    >
+                      {skill.description}
+                    </Typography>
+                  </Paper>
+                </motion.div>
               </Grid>
             ))}
           </Grid>

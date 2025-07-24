@@ -2,25 +2,23 @@ import React from 'react';
 import { Box, Container, Grid, Typography, IconButton, Link } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <GitHubIcon />, url: 'https://github.com/tahagunees' },
-    { icon: <LinkedInIcon />, url: 'https://www.linkedin.com/in/taha-g%C3%BCne%C5%9F-32a191253/' },
-    { icon: <TwitterIcon />, url: 'https://twitter.com/tahagnes' },
-    { icon: <EmailIcon />, url: 'tahagnes@hotmail.com' }
+    { icon: <GitHubIcon />, url: 'https://github.com/cagrisahin' },
+    { icon: <LinkedInIcon />, url: 'https://www.linkedin.com/in/cagrisahin' },
+    { icon: <EmailIcon />, url: 'mailto:cagri.sahin@email.com' }
   ];
 
   const footerLinks = [
-    { text: 'Anasayfa', href: '#' },
-    { text: 'Hakkımda', href: '#about' },
-    { text: 'Yetenekler', href: '#skills' },
-    { text: 'Projeler', href: '#projects' },
-    { text: 'İletişim', href: '#contact' }
+    { text: 'Home', href: '#' },
+    { text: 'About', href: '#about' },
+    { text: 'Skills', href: '#skills' },
+    { text: 'Projects', href: '#projects' },
+    { text: 'Contact', href: '#contact' }
   ];
 
   return (
@@ -40,10 +38,10 @@ const Footer = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Taha Güneş
+              Ömer Güneş
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Full Stack Developer olarak modern web teknolojileri ile kullanıcı dostu uygulamalar geliştiriyorum.
+              Game Developer specializing in Unity and C# for mobile and PC games. 4+ years of experience with various SDKs including Nakama, Azure PlayFab, and Photon Network.
             </Typography>
             <Box sx={{ mt: 2 }}>
               {socialLinks.map((social, index) => (
@@ -67,7 +65,7 @@ const Footer = () => {
           
           <Grid item xs={12} md={4}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 , fontFamily: 'Poppins, sans-serif'}}>
-              Hızlı Bağlantılar
+              Quick Links
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               {footerLinks.map((link, index) => (
@@ -91,13 +89,13 @@ const Footer = () => {
 
           <Grid item xs={12} md={4}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 , fontFamily: 'Poppins, sans-serif'}}>
-              İletişim
+              Contact
             </Typography>
             <Typography variant="body2" color="text.secondary" paragraph>
-              Samsun, Türkiye
+              Istanbul, Turkey
             </Typography>
             <Typography variant="body2" color="text.secondary" paragraph>
-              Email: tahagnes@hotmail.com
+              Email: cagri.sahin@email.com
             </Typography>
             
           </Grid>
@@ -105,7 +103,7 @@ const Footer = () => {
 
         <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid', borderColor: 'divider' , fontFamily: 'Poppins, sans-serif'}}>
           <Typography variant="body2" color="text.secondary" align="center">
-            © {currentYear} TAHA GÜNEŞ. Tüm hakları saklıdır.
+            © {currentYear} ÖMER GÜNEŞ. All rights reserved.
           </Typography>
         </Box>
       </Container>

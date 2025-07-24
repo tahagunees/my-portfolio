@@ -13,18 +13,18 @@ import SchoolIcon from '@mui/icons-material/School';
 const Experience = () => {
   const experiences = [
     {
-      title: "Frontend Developer",
-      company: "Şirket Adı",
-      date: "2023 - Devam",
+      title: "Game Developer",
+      company: "Unico Studio",
+      date: "2020 - Present",
       type: "work",
-      description: "React ve modern web teknolojileri ile geliştirmeler"
+      description: "Developing mobile and PC games using Unity and C#. Working with various SDKs including Nakama, Azure PlayFab, and Photon Network. Contributing to innovative gaming projects with focus on gameplay mechanics and user experience."
     },
     {
-      title: "Yazılım Mühendisliği",
-      company: "Samsun Üniversitesi",
-      date: "2022 - Devam Ediyor",
+      title: "Computer Engineering",
+      company: "Istanbul University",
+      date: "2016 - 2020",
       type: "education",
-      description: "Lisans Derecesi"
+      description: "Bachelor's Degree - Focused on game programming and software development fundamentals."
     }
   ];
 
@@ -39,7 +39,7 @@ const Experience = () => {
           <Typography variant="h3" sx={{ textAlign: 'center', mb: 6 ,
             fontFamily:'Pacifico,cursive'
           }}>
-            Deneyim
+            Experience
           </Typography>
           
           <Timeline position="alternate">

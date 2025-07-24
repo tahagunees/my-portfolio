@@ -21,22 +21,21 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Car Wash Automation',
-      description: 'Oto Yıkama Dükkanları için geliştirdiğim bir otomasyon uygulaması. Python Qt arayüz kütüphanesi kullanılarak geliştirildi.',
-      image: carwash,
-      github: 'https://github.com/tahagunees/CarWashAutomation',
+      title: 'Mobile Racing Game',
+      description: 'Developed a mobile racing game using Unity and C#. Implemented car physics, AI opponents, and multiplayer functionality using Photon Network.',
+      image: 'https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-02/Unity-Gaming-Services-hero.jpg',
+      github: 'https://github.com/cagrisahin',
+    },
+    {
+      title: 'Level Editor Tool',
+      description: 'Created a custom level editor tool for rapid game level design. Built with Unity Editor scripting to streamline the development workflow.',
+      image: 'https://docs.unity3d.com/uploads/Main/LevelEditor.png',
       demoEmbed: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
     },
     {
-      title: 'Samsun Tanıtım',
-      description: 'Samsun şehrinin konumu ve özellikleri hakkında bilgi.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Atakum_Sahili.jpg/1280px-Atakum_Sahili.jpg',
-      demoEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192698.5521409693!2d36.16277669921875!3d41.322257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x408877e8e2f65e3b%3A0xc76e36bf3a78efbc!2sSamsun!5e0!3m2!1str!2str!4v1704055236599!5m2!1str!2str'
-    },
-    {
-      title: 'Aykut Hoca',
-      description: 'Bazı çiçekler bazı topraklarda olmuyor',
-      image: 'https://i.ytimg.com/vi/ncLtGldfIbM/maxresdefault.jpg',
+      title: 'Multiplayer Battle Arena',
+      description: 'Developed a real-time multiplayer battle arena game using Nakama and Azure PlayFab for backend services. Features matchmaking and player progression.',
+      image: 'https://blog.unity.com/sites/default/files/2021-03/Prototyping-header.jpg',
       demoEmbed: 'https://www.youtube.com/embed/ncLtGldfIbM'
     }
   ];
@@ -54,7 +53,7 @@ const Projects = () => {
             fontFamily: 'Pacifico,cursive' 
           }}
         >
-          Projelerim
+          My Projects
         </Typography>
         <Grid container spacing={4}>
           {projects.map((project, index) => (
@@ -122,7 +121,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       data-testid={`github-button-${index}`}
                     >
-                      Kaynak Kod
+                      Source Code
                     </Button>
                   )}
                   {project.demoEmbed && (
@@ -132,7 +131,7 @@ const Projects = () => {
                       onClick={() => handleOpenDemo(project)}
                       data-testid={`demo-button-${index}`}
                     >
-                      Önizleme
+                      Preview
                     </Button>
                   )}
                 </CardActions>

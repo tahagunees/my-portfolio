@@ -7,7 +7,7 @@ const Contact = () => {
     <Box id="contact" sx={{ py: 8, bgcolor: 'background.paper' }}>
       <Container maxWidth="md">
         <Typography variant="h3" sx={{ textAlign: 'center', mb: 6,fontFamily:'Pacifico,cursive' ,fontWeight: 700 }}>
-          İletişime Geç
+          Get In Touch
         </Typography>
         <Box component="form" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={3}>
@@ -15,7 +15,7 @@ const Contact = () => {
               <TextField
                 required
                 fullWidth
-                label="Ad Soyad"
+                label="Full Name"
                 autoFocus
               />
             </Grid>
@@ -31,14 +31,14 @@ const Contact = () => {
               <TextField
                 required
                 fullWidth
-                label="Konu"
+                label="Subject"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                label="Mesaj"
+                label="Message"
                 multiline
                 rows={4}
               />
@@ -51,7 +51,7 @@ const Contact = () => {
             endIcon={<SendIcon />}
             sx={{ mt: 3, mb: 2 }}
           >
-            Gönder
+            Send
           </Button>
         </Box>
       </Container>

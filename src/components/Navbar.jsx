@@ -18,12 +18,15 @@ import { HashLink } from 'react-router-hash-link';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ColorModeContext } from '../theme';
+import { ColorModeContext } from '../App';
 
 const navItems = [
-  { name: 'Ana Sayfa', href: '/#home' },
-  { name: 'Projeler', href: '/#projects' },
-  { name: 'Blog', href: '/#blog' },
+  { name: 'Home', href: '/#home' },
+  { name: 'About', href: '/#about' },
+  { name: 'Skills', href: '/#skills' },
+  { name: 'Experience', href: '/#experience' },
+  { name: 'Projects', href: '/#projects' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 function ElevationScroll(props) {
@@ -62,20 +65,55 @@ export default function Navbar(props) {
   };
 
   const drawer = (
-    <List>
-      {navItems.map((item) => (
-        <ListItem 
-          key={item.name} 
-          component={HashLink} 
-          to={item.href}
-          data-testid={`mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}
-          onClick={handleDrawerToggle}
-          style={{ textDecoration: 'none', color: 'inherit' }}
-        >
-          <ListItemText primary={item.name} />
-        </ListItem>
-      ))}
-    </List>
+    <Box sx={{ p: 2 }}>
+      <Typography
+        variant="h6"
+        sx={{
+          textAlign: 'center',
+          mb: 3,
+          fontFamily: 'Montserrat, sans-serif',
+          fontWeight: 700,
+          background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
+        }}
+      >
+        Ömer Güneş
+      </Typography>
+      <List>
+        {navItems.map((item) => (
+          <ListItem 
+            key={item.name} 
+            component={HashLink} 
+            to={item.href}
+            data-testid={`mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}
+            onClick={handleDrawerToggle}
+            sx={{ 
+              textDecoration: 'none', 
+              color: 'inherit',
+              borderRadius: 2,
+              mb: 1,
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                backgroundColor: 'primary.light',
+                color: 'white',
+                transform: 'translateX(10px)',
+              }
+            }}
+          >
+            <ListItemText 
+              primary={item.name}
+              primaryTypographyProps={{
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: 500,
+                fontSize: '1.1rem'
+              }}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
   );
 
   return (
@@ -99,14 +137,25 @@ export default function Navbar(props) {
                 sx={{
                   flexGrow: 1,
                   display: { xs: matches ? 'none' : 'block', sm: 'block' },
-                  fontFamily: 'Pacifico, cursive',
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontWeight: 700,
+                  fontSize: '1.5rem',
                   color: 'text.primary',
+                  background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  }
                 }}
               >
-                Taha Güneş
+                Ömer Güneş
               </Typography>
 
-              <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
+              <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
                 {navItems.map((item) => (
                   <Button
                     key={item.name}
@@ -118,8 +167,33 @@ export default function Navbar(props) {
                       color: 'text.primary',
                       textTransform: 'none',
                       mx: 1,
+                      px: 2.5,
+                      py: 1,
+                      borderRadius: 3,
+                      fontFamily: 'Poppins, sans-serif',
+                      fontWeight: 500,
+                      fontSize: '0.95rem',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      transition: 'all 0.3s ease',
+                      '&:before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: '-100%',
+                        width: '100%',
+                        height: '100%',
+                        background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+                        transition: 'left 0.3s ease',
+                        zIndex: -1,
+                      },
                       '&:hover': {
-                        backgroundColor: 'action.hover',
+                        color: 'white',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 4px 12px rgba(25, 118, 210, 0.3)',
+                        '&:before': {
+                          left: 0,
+                        },
                       },
                     }}
                   >
@@ -128,12 +202,24 @@ export default function Navbar(props) {
                 ))}
               </Box>
 
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Button
                   data-testid="theme-toggle"
                   onClick={colorMode.toggleColorMode}
                   color="inherit"
-                  sx={{ ml: 1 }}
+                  sx={{ 
+                    ml: 1,
+                    minWidth: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.1) rotate(180deg)',
+                      boxShadow: '0 4px 12px rgba(25, 118, 210, 0.4)',
+                    }
+                  }}
                 >
                   {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </Button>
@@ -143,6 +229,18 @@ export default function Navbar(props) {
                     data-testid="mobile-menu-toggle"
                     onClick={handleDrawerToggle}
                     color="inherit"
+                    sx={{
+                      minWidth: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(45deg, #1976d2 30%, #64b5f6 90%)',
+                      color: 'white',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                        boxShadow: '0 4px 12px rgba(25, 118, 210, 0.4)',
+                      }
+                    }}
                   >
                     <MenuIcon />
                   </Button>

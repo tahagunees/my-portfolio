@@ -166,7 +166,7 @@ const Hero = () => {
                 backgroundClip: 'text'
               }}
             >
-              Hello, I'm Ömer Güneş
+              Hello, I'm Çağrı Şahin
             </Typography>
           </motion.div>
 

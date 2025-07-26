@@ -3,25 +3,22 @@ import { Box, Container, Typography, Paper } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { motion } from 'framer-motion';
 import { 
-  FaGamepad, FaCogs, FaUnity, FaCode, FaGitAlt, FaWindows, FaNetworkWired 
+  FaUnity, FaCode, FaGitAlt, FaGamepad, FaCogs, FaNetworkWired 
 } from 'react-icons/fa';
 import { 
-  SiCsharp, SiUnrealengine, SiVisualstudio, SiBlender, SiAutodesk, SiMicrosoftazure 
+  SiCsharp, SiVisualstudio, SiMicrosoftazure 
 } from 'react-icons/si';
 
 const Skills = () => {
   const technologies = [
     { name: 'Unity', icon: <FaUnity size={40} />, color: '#000000' },
     { name: 'C#', icon: <SiCsharp size={40} />, color: '#239120' },
-    { name: 'Unreal Engine', icon: <SiUnrealengine size={40} />, color: '#0E1128' },
     { name: 'Visual Studio', icon: <SiVisualstudio size={40} />, color: '#5C2D91' },
     { name: 'Game Design', icon: <FaGamepad size={40} />, color: '#FF6B35' },
-    { name: 'Level Design', icon: <FaCogs size={40} />, color: '#6C757D' },
+    { name: 'Mobile Development', icon: <FaCogs size={40} />, color: '#6C757D' },
     { name: 'Azure PlayFab', icon: <SiMicrosoftazure size={40} />, color: '#0078D4' },
     { name: 'Photon Network', icon: <FaNetworkWired size={40} />, color: '#00D4AA' },
-    { name: 'Nakama SDK', icon: <FaCode size={40} />, color: '#28A745' },
-    { name: 'Blender', icon: <SiBlender size={40} />, color: '#F5792A' },
-    { name: 'Maya', icon: <SiAutodesk size={40} />, color: '#0696D7' },
+    { name: 'Game Programming', icon: <FaCode size={40} />, color: '#28A745' },
     { name: 'Git', icon: <FaGitAlt size={40} />, color: '#F05032' },
   ];
 

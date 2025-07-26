@@ -10,17 +10,17 @@ const About = () => {
     {
       icon: <CodeIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
       title: 'Game Development',
-      description: 'Developing mobile and PC games using Unity and Unreal Engine with focus on interactive experiences.'
+      description: 'Developing engaging mobile games using Unity and C# with focus on gameplay mechanics and user experience optimization.'
     },
     {
       icon: <BrushIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
-      title: 'Level Design',
-      description: 'Creating engaging and fun levels that provide immersive gaming experiences for players.'
+      title: 'Game Design',
+      description: 'Creating immersive gaming experiences with attention to game graphics, level design, and overall player engagement.'
     },
     {
       icon: <DevicesIcon sx={{ fontSize: 40, color: '#556cd6' }} />,
-      title: 'Team Collaboration',
-      description: 'Working effectively with multidisciplinary teams to develop successful gaming projects.'
+      title: 'Multiplayer Systems',
+      description: 'Implementing real-time multiplayer capabilities using Photon Network and backend management with Azure PlayFab.'
     }
   ];
 
@@ -48,22 +48,7 @@ const About = () => {
     }
   };
 
-  const imageVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8,
-      rotateY: -15 
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
-  };
+
 
   const cardVariants = {
     hidden: { 
@@ -148,8 +133,8 @@ const About = () => {
                     fontFamily: 'Poppins, sans-serif'
                   }}
                 >
-                  Hello, I'm Ömer Güneş, a passionate Game Developer with over 4 years of experience in developing 
-                  interactive and engaging mobile games. Currently working as Game Developer at Unico Studio.
+                  Hello, I'm Çağrı Şahin, a passionate Game Developer with over 4 years of experience in developing 
+                  engaging mobile games. Currently working as Game Developer at Unico Studio, focusing on puzzle games.
                 </Typography>
               </motion.div>
               
@@ -162,9 +147,9 @@ const About = () => {
                     fontFamily: 'Poppins, sans-serif'
                   }}
                 >
-                  Proficient in Unity and C#, I focus on creating seamless and immersive gaming experiences. 
-                  My goal is to continuously enhance my skills and stay updated with the latest trends in the gaming industry. 
-                  Experienced with various SDKs like Nakama, Azure PlayFab, and Photon Network.
+                  Proficient in Unity and C#, I specialize in creating immersive gaming experiences for mobile platforms. 
+                  My expertise includes working with Azure PlayFab for backend management, Photon Network for multiplayer 
+                  capabilities, and collaborating with design teams to enhance game graphics and user experience.
                 </Typography>
               </motion.div>
             </Grid>

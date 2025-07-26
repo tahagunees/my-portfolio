@@ -28,7 +28,7 @@ const GitHubStats = () => {
               boxShadow: 3,
               mb: {xs:2,md:0}
             }}
-            src="https://github-readme-stats.vercel.app/api?username=tahagunees&show_icons=true&theme=radical&locale=tr"
+            src="https://github-readme-stats.vercel.app/api?username=cagrisahin&show_icons=true&theme=radical&locale=tr"
             alt="GitHub Stats"
           />
         </Grid>
@@ -41,7 +41,7 @@ const GitHubStats = () => {
               borderRadius: 2,
               boxShadow: 3,
             }}
-            src="https://github-readme-streak-stats.herokuapp.com/?user=tahagunees&theme=radical"
+            src="https://github-readme-streak-stats.herokuapp.com/?user=cagrisahin&theme=radical"
             alt="GitHub Streak Stats"
           />
            <Grid item xs={12} sx={{ mt: 3 }}>
@@ -53,7 +53,7 @@ const GitHubStats = () => {
               borderRadius: 2,
               boxShadow: 3,
             }}
-            src="https://ghchart.rshah.org/tahagunees"
+            src="https://ghchart.rshah.org/cagrisahin"
             alt="GitHub Commit Chart"
             />
           </Grid>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, CardActions, Button, Dialog } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
-import carwash from '../assets/carwash.jpg';
 import IFrameComponent from './common/IFrameComponent';
 
 const Projects = () => {
@@ -21,21 +20,21 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Mobile Racing Game',
-      description: 'Developed a mobile racing game using Unity and C#. Implemented car physics, AI opponents, and multiplayer functionality using Photon Network.',
-      image: 'https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-02/Unity-Gaming-Services-hero.jpg',
+      title: 'Puzzle Games at Unico Studio',
+      description: 'Working on engaging puzzle games with innovative mechanics and features. Implementing new gameplay elements and performance optimizations for mobile platforms using Unity.',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       github: 'https://github.com/cagrisahin',
     },
     {
-      title: 'Level Editor Tool',
-      description: 'Created a custom level editor tool for rapid game level design. Built with Unity Editor scripting to streamline the development workflow.',
-      image: 'https://docs.unity3d.com/uploads/Main/LevelEditor.png',
+      title: 'Multiplayer FPS Game - Hazmob',
+      description: 'Contributed to the development and launch of 2 mobile games including a PVP FPS game. Utilized Azure PlayFab for backend management and Photon Network for real-time multiplayer capabilities.',
+      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       demoEmbed: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
     },
     {
-      title: 'Multiplayer Battle Arena',
-      description: 'Developed a real-time multiplayer battle arena game using Nakama and Azure PlayFab for backend services. Features matchmaking and player progression.',
-      image: 'https://blog.unity.com/sites/default/files/2021-03/Prototyping-header.jpg',
+      title: 'Mobile Game Collection - Banba Games',
+      description: 'Developed game mechanics and features for various mobile games. Conducted debugging and testing to ensure high-quality gameplay and user experience.',
+      image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       demoEmbed: 'https://www.youtube.com/embed/ncLtGldfIbM'
     }
   ];

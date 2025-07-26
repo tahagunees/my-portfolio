@@ -79,7 +79,7 @@ export default function Navbar(props) {
           backgroundClip: 'text'
         }}
       >
-        Ömer Güneş
+        Çağrı Şahin
       </Typography>
       <List>
         {navItems.map((item) => (
@@ -152,7 +152,7 @@ export default function Navbar(props) {
                   }
                 }}
               >
-                Ömer Güneş
+                Çağrı Şahin
               </Typography>
 
               <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>

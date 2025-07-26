@@ -38,10 +38,10 @@ const Footer = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Ömer Güneş
+              Çağrı Şahin
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Game Developer specializing in Unity and C# for mobile and PC games. 4+ years of experience with various SDKs including Nakama, Azure PlayFab, and Photon Network.
+              Game Developer specializing in Unity and C# for mobile games. 4+ years of experience with various SDKs including Azure PlayFab and Photon Network. Currently working on puzzle games at Unico Studio.
             </Typography>
             <Box sx={{ mt: 2 }}>
               {socialLinks.map((social, index) => (
@@ -103,7 +103,7 @@ const Footer = () => {
 
         <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid', borderColor: 'divider' , fontFamily: 'Poppins, sans-serif'}}>
           <Typography variant="body2" color="text.secondary" align="center">
-            © {currentYear} ÖMER GÜNEŞ. All rights reserved.
+            © {currentYear} ÇAĞRI ŞAHİN. All rights reserved.
           </Typography>
         </Box>
       </Container>

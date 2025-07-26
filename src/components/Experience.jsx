@@ -15,16 +15,37 @@ const Experience = () => {
     {
       title: "Game Developer",
       company: "Unico Studio",
-      date: "2020 - Present",
+      date: "May 2023 - Present",
       type: "work",
-      description: "Developing mobile and PC games using Unity and C#. Working with various SDKs including Nakama, Azure PlayFab, and Photon Network. Contributing to innovative gaming projects with focus on gameplay mechanics and user experience."
+      description: "Working on puzzle games, implementing new features and improvements using Unity. Developing engaging gameplay mechanics and optimizing performance for mobile platforms."
     },
     {
-      title: "Computer Engineering",
-      company: "Istanbul University",
-      date: "2016 - 2020",
+      title: "Game Developer",
+      company: "Hazmob",
+      date: "Sep 2022 - Apr 2023",
+      type: "work",
+      description: "Contributed to the development and launch of 2 mobile games. Utilized Azure PlayFab for backend management and Photon Network for real-time multiplayer capabilities. Collaborated with designers to enhance game graphics and user experience."
+    },
+    {
+      title: "Game Developer",
+      company: "Banba Games",
+      date: "Feb 2021 - Jul 2022",
+      type: "work",
+      description: "Developed game mechanics and features for various mobile games. Conducted debugging and testing to ensure high-quality gameplay using Unity and mobile game development best practices."
+    },
+    {
+      title: "Game Developer",
+      company: "DaBomb Games",
+      date: "Jul 2020 - Feb 2021",
+      type: "work",
+      description: "Assisted in the development of mobile games, focusing on user experience and performance optimization. Worked independently on specific game development tasks."
+    },
+    {
+      title: "Computer Science",
+      company: "İstanbul University",
+      date: "2017 - 2022",
       type: "education",
-      description: "Bachelor's Degree - Focused on game programming and software development fundamentals."
+      description: "Bachelor's Degree in Computer Science (GPA: 3.06). Completed a senior project on a multiplayer game using socket networking, demonstrating expertise in game development and networking technologies."
     }
   ];
 
